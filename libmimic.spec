@@ -1,6 +1,9 @@
 %define	name    libmimic
 %define	version 1.0.4
 %define	release %mkrel 3
+%define major 0
+%define libname %mklibname mimic %major
+%define develname %mklibname -d mimic
 
 Summary:	Audio/Video Conference software for Instant Messengers
 Name:		%{name}
@@ -17,13 +20,23 @@ Audio/Video Conference software for Instant Messengers.
 It aims to provide Audio/Video conferencing for as many 
 Instant Messengers as possible through a modular design.
 
-%package -n %{name}-devel
+%package -n %libname
+Group: System/Libraries
+Summary:Audio/Video Conference software for Instant Messengers
+Obsoletes: libmimic
+
+%description -n %libname
+Audio/Video Conference software for Instant Messengers.
+It aims to provide Audio/Video conferencing for as many 
+Instant Messengers as possible through a modular design.
+
+%package -n %develname
 Summary:	Headers of %name for development
 Group:		Development/C
-Requires:	%{name} = %{version}
+Requires:	%{libname} = %{version}
 Provides:	%{name}-devel = %{version}-%{release}
 
-%description -n %{name}-devel
+%description -n %develname
 Headers of %{name} for development.
 
 
@@ -44,17 +57,16 @@ rm -rf $RPM_BUILD_ROOT
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post -n %{name} -p /sbin/ldconfig
+%post -n %{libname} -p /sbin/ldconfig
 
-%postun -n %{name} -p /sbin/ldconfig
+%postun -n %{libname} -p /sbin/ldconfig
 
 
-%files -n %{name}
+%files -n %{libname}
 %defattr(-,root,root)
-%{_libdir}/libmimic.so.0
-%{_libdir}/libmimic.so.0.0.1
+%{_libdir}/libmimic.so.%{major}*
 
-%files -n %{name}-devel
+%files -n %develname
 %defattr(-,root,root)
 %{_includedir}/mimic.h
 %{_libdir}/libmimic.a
