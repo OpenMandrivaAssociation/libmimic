@@ -13,7 +13,6 @@ License:	LGPLv2+
 Url:		http://sourceforge.net/projects/farsight/
 Group:		Networking/Instant messaging
 Source0:	http://ovh.dl.sourceforge.net/sourceforge/farsight/%{name}-%{version}.tar.gz 
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: glib2-devel
 
 %description
