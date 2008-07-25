@@ -1,6 +1,6 @@
 %define	name    libmimic
 %define	version 1.0.4
-%define	release %mkrel 3
+%define	release %mkrel 5
 %define major 0
 %define libname %mklibname mimic %major
 %define develname %mklibname -d mimic
