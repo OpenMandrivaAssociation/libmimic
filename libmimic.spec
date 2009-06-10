@@ -1,6 +1,6 @@
 %define	name    libmimic
 %define	version 1.0.4
-%define	release %mkrel 5
+%define	release %mkrel 6
 %define major 0
 %define libname %mklibname mimic %major
 %define develname %mklibname -d mimic
@@ -13,6 +13,7 @@ License:	LGPLv2+
 Url:		http://sourceforge.net/projects/farsight/
 Group:		Networking/Instant messaging
 Source0:	http://ovh.dl.sourceforge.net/sourceforge/farsight/%{name}-%{version}.tar.gz 
+Patch0:		%{name}-1.0.4-fix-underlinking.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildRequires: glib2-devel
 
@@ -43,6 +44,7 @@ Headers of %{name} for development.
 
 %prep
 %setup -q
+%patch0 -p1 -b .undlink
 
 %build
 
