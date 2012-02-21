@@ -1,6 +1,6 @@
 %define	name    libmimic
 %define	version 1.0.4
-%define	release %mkrel 7
+%define	release %mkrel 8
 %define major 0
 %define libname %mklibname mimic %major
 %define develname %mklibname -d mimic
@@ -55,18 +55,11 @@ Headers of %{name} for development.
 rm -rf $RPM_BUILD_ROOT
 
 %{makeinstall_std}
-
+rm -f %buildroot%_libdir/*.la
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
 
 
 %files -n %{libname}
@@ -77,7 +70,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(-,root,root)
 %{_includedir}/mimic.h
 %{_libdir}/libmimic.a
-%{_libdir}/libmimic.la
 %{_libdir}/libmimic.so
 %{_libdir}/pkgconfig/libmimic.pc
 
