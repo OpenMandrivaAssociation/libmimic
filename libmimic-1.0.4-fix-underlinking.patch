@@ -1,0 +1,21 @@
+diff -p -up libmimic-1.0.4/src/Makefile.am.undlink libmimic-1.0.4/src/Makefile.am
+--- libmimic-1.0.4/src/Makefile.am.undlink	2006-02-07 10:53:40.000000000 +0100
++++ libmimic-1.0.4/src/Makefile.am	2009-06-10 21:02:49.000000000 +0200
+@@ -20,4 +20,4 @@ libmimic_la_SOURCES = \
+ libmimic_la_LDFLAGS = \
+ 	-version-info $(MIMIC_CURRENT):$(MIMIC_REVISION):$(MIMIC_AGE) \
+ 	-export-symbols-regex "^[^_].*"
+-
++libmimic_la_LIBADD = -lm -lglib-2.0
+diff -p -up libmimic-1.0.4/src/Makefile.in.undlink libmimic-1.0.4/src/Makefile.in
+--- libmimic-1.0.4/src/Makefile.in.undlink	2009-06-10 21:03:19.000000000 +0200
++++ libmimic-1.0.4/src/Makefile.in	2009-06-10 21:04:20.000000000 +0200
+@@ -59,7 +59,7 @@ am__installdirs = "$(DESTDIR)$(libdir)" 
+ 	"$(DESTDIR)$(libmimicincludedir)"
+ libLTLIBRARIES_INSTALL = $(INSTALL)
+ LTLIBRARIES = $(lib_LTLIBRARIES)
+-libmimic_la_LIBADD =
++libmimic_la_LIBADD = -lm -lglib-2.0
+ am_libmimic_la_OBJECTS = mimic.lo encode.lo decode.lo bitstring.lo \
+ 	vlc_common.lo vlc_encode.lo vlc_decode.lo fdct_quant.lo \
+ 	idct_dequant.lo colorspace.lo deblock.lo
