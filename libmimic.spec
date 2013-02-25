@@ -1,75 +1,58 @@
-%define	name    libmimic
-%define	version 1.0.4
-%define	release %mkrel 8
-%define major 0
-%define libname %mklibname mimic %major
-%define develname %mklibname -d mimic
+%define	major	0
+%define libname	%mklibname mimic %major
+%define devname	%mklibname -d mimic
 
 Summary:	Audio/Video Conference software for Instant Messengers
-Name:		%{name}
-Version:	%{version}
-Release:	%{release}
+Name:		libmimic
+Version:	1.0.4
+Release:	9
 License:	LGPLv2+
 Url:		http://sourceforge.net/projects/farsight/
 Group:		Networking/Instant messaging
 Source0:	http://ovh.dl.sourceforge.net/sourceforge/farsight/%{name}-%{version}.tar.gz 
 Patch0:		%{name}-1.0.4-fix-underlinking.patch
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildRequires: glib2-devel
+BuildRequires:	pkgconfig(glib-2.0)
 
 %description
 Audio/Video Conference software for Instant Messengers.
 It aims to provide Audio/Video conferencing for as many 
 Instant Messengers as possible through a modular design.
 
-%package -n %libname
-Group: System/Libraries
-Summary:Audio/Video Conference software for Instant Messengers
-Obsoletes: libmimic
+%package -n	%{libname}
+Group:		System/Libraries
+Summary:	Audio/Video Conference software for Instant Messengers
+Obsoletes:	libmimic
 
-%description -n %libname
+%description -n %{libname}
 Audio/Video Conference software for Instant Messengers.
 It aims to provide Audio/Video conferencing for as many 
 Instant Messengers as possible through a modular design.
 
-%package -n %develname
-Summary:	Headers of %name for development
+%package -n	%{devname}
+Summary:	Headers of %{name} for development
 Group:		Development/C
 Requires:	%{libname} = %{version}
 Provides:	%{name}-devel = %{version}-%{release}
 
-%description -n %develname
+%description -n %{devname}
 Headers of %{name} for development.
-
 
 %prep
 %setup -q
-%patch0 -p1 -b .undlink
+%patch0 -p1 -b .undlink~
 
 %build
-
 %configure2_5x
 %make
 
 %install
-rm -rf $RPM_BUILD_ROOT
-
-%{makeinstall_std}
-rm -f %buildroot%_libdir/*.la
-
-%clean
-rm -rf $RPM_BUILD_ROOT
-
-
+%makeinstall_std
 
 %files -n %{libname}
-%defattr(-,root,root)
 %{_libdir}/libmimic.so.%{major}*
 
-%files -n %develname
-%defattr(-,root,root)
+%files -n %{devname}
 %{_includedir}/mimic.h
 %{_libdir}/libmimic.a
 %{_libdir}/libmimic.so
 %{_libdir}/pkgconfig/libmimic.pc
-
