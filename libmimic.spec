@@ -5,7 +5,7 @@
 Summary:	Audio/Video Conference software for Instant Messengers
 Name:		libmimic
 Version:	1.0.4
-Release:	11
+Release:	12
 License:	LGPLv2+
 Url:		http://sourceforge.net/projects/farsight/
 Group:		Networking/Instant messaging
